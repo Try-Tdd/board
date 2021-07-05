@@ -1,16 +1,31 @@
 package com.board.tddboard.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Data
 public class Comment {
 
-    private String content;
-    private String writer;
-    private String password;
+    @Getter
+    private Long id;
+
+    @Getter
     private LocalDateTime createdAt;
+
+    @Getter
     private LocalDateTime updatedAt;
+
+    @Getter
+    private LocalDateTime deletedAt;
+
+    @Getter @Setter
+    private String content;
+
+    @Getter @Setter
+    private String writer;
+
+    @Getter @Setter
+    private String password;
 
 }
