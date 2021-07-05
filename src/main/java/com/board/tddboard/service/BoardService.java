@@ -6,7 +6,7 @@ public interface BoardService {
 
     public Board save(Board board);
     public Board detail(Long id);
-    public void remove(Long id);
-    public void update(Long id);
+    public int remove(Long id);
+    public int update(Long id);
 
 }

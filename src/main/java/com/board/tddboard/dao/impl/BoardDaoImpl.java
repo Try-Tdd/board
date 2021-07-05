@@ -16,13 +16,15 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public void removeById(Long id) {
+    public int removeById(Long id) {
 
+        return 0;
     }
 
     @Override
-    public void updateById(Long id) {
+    public int updateById(Long id) {
 
+        return 0;
     }
 
 }

@@ -16,13 +16,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void remove(Long id) {
+    public int remove(Long id) {
 
+        return 0;
     }
 
     @Override
-    public void update(Long id) {
+    public int update(Long id) {
 
+        return 0;
     }
 
 }
