@@ -7,22 +7,22 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board save(Board board) {
+
         return null;
     }
 
     @Override
-    public Board detail(Long id) {
+    public Board getDetail(Long id) {
         return null;
     }
 
     @Override
-    public void remove(Long id) {
+    public void removeById(Long id) {
 
     }
 
     @Override
-    public void update(Long id) {
+    public void updateById(Long id) {
 
     }
-
 }
