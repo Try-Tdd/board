@@ -1,33 +1,48 @@
 package com.board.tddboard.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Getter
+@AllArgsConstructor
+@Builder
 public class Board {
 
-    @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
-    @Getter
+    @Column(nullable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Getter
+    @Column(nullable = false)
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @Getter
+    @Column
     private LocalDateTime deletedAt;
 
-    @Getter
+    @Column(nullable = false)
     private String title;
 
-    @Getter
+    @Column(nullable = false)
     private String content;
 
-    @Getter
+    @Column(nullable = false)
     private String writer;
 
-    @Getter
+    @Column(nullable = false)
     private String password;
 
+    public Board() {
+
+    }
 }
