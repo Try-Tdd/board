@@ -4,6 +4,8 @@ import com.board.tddboard.dao.BoardDao;
 import com.board.tddboard.domain.Board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
@@ -11,8 +13,7 @@ import javax.transaction.Transactional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
-@SpringBootTest
-@Transactional
+@DataJpaTest
 class BoardDaoImplTest {
 
     @Autowired
