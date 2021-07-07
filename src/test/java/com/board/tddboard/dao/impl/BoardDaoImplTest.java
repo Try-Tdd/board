@@ -31,8 +31,7 @@ class BoardDaoImplTest {
         Board saveBoard = boardDao.save(board);
 
         // then
-        Board findBoard = boardDao.findById(saveBoard.getId());
-        assertThat(findBoard).isNotNull();
+        assertThat(saveBoard.getId()).isNotNull();
     }
 
     @Test
