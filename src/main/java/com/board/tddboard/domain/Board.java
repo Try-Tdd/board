@@ -47,4 +47,16 @@ public class Board {
     @Column(nullable = false)
     private String password;
 
+    public void remove() {
+        this.deletedAt = LocalDateTime.now();
+    }
+
+    public void changeTitle(String title) {
+        this.title = title;
+    }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
+
 }

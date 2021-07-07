@@ -1,12 +1,8 @@
 package com.board.tddboard.dao;
 
 import com.board.tddboard.domain.Board;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface BoardDao {
-
-    public Board save(Board board);
-    public Board findById(Long id);
-    public int removeById(Long id);
-    public int updateById(Long id, Board board);
-
-}
+@Repository
+public interface BoardDao extends JpaRepository<Board, Long> {}

@@ -42,7 +42,7 @@ class BoardDaoImplTest {
         Board saveBoard = boardDao.save(board);
 
         // when
-        Board findBoard = boardDao.findById(saveBoard.getId());
+        Board findBoard = boardDao.findById(saveBoard.getId()).get();
 
         // then
         assertThat(findBoard).isNotNull();
@@ -56,37 +56,27 @@ class BoardDaoImplTest {
         Board saveBoard = boardDao.save(board);
 
         // when
-        Board findBoard = boardDao.findById(saveBoard.getId());
-        boolean passwordCompareResult = findBoard.getPassword().equals(saveBoard.getPassword());
+        saveBoard.remove();
+        Board removeBoard = boardDao.save(saveBoard);
 
         // then
-        if(passwordCompareResult) {
-            int resultRowCount = boardDao.removeById(saveBoard.getId());
-            assertThat(resultRowCount).isEqualTo(1);
-        } else {
-            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
-        }
+        assertThat(removeBoard.getDeletedAt()).isNotNull();
     }
 
     @Test
     void 게시물수정() {
         // given
+        String changeTitle = "변경된 제목";
         Board board = makeBoard();
-
-        Board updateBoard = new Board("수정제목", "수정내용", "작성자", "1234");
 
         Board saveBoard = boardDao.save(board);
 
         // when
-        Board findBoard = boardDao.findById(saveBoard.getId());
-        boolean passwordCompareResult = findBoard.getPassword().equals(saveBoard.getPassword());
+        saveBoard.changeTitle(changeTitle);
+        Board updateBoard = boardDao.save(saveBoard);
 
         // then
-        if(passwordCompareResult) {
-            int resultRowCount = boardDao.updateById(saveBoard.getId(), updateBoard);
-            assertThat(resultRowCount).isEqualTo(1);
-        } else {
-            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
-        }
+        assertThat(updateBoard.getTitle()).isEqualTo(saveBoard.getTitle());
+
     }
 }
