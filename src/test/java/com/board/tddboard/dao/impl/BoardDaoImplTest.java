@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -50,21 +53,6 @@ class BoardDaoImplTest {
     }
 
     @Test
-    void 게시물삭제() {
-        // given
-        Board board = makeBoard();
-
-        Board saveBoard = boardDao.save(board);
-
-        // when
-        saveBoard.remove();
-        Board removeBoard = boardDao.save(saveBoard);
-
-        // then
-        assertThat(removeBoard.getDeletedAt()).isNotNull();
-    }
-
-    @Test
     void 게시물수정() {
         // given
         String changeTitle = "변경된 제목";
@@ -78,6 +66,24 @@ class BoardDaoImplTest {
 
         // then
         assertThat(updateBoard.getTitle()).isEqualTo(saveBoard.getTitle());
+    }
 
+    @Test
+    void 게시물리스트조회() {
+        // given
+        Board board1 = makeBoard();
+        Board board2 = makeBoard();
+        List<Board> boardList = new ArrayList<>();
+
+        boardList.add(board1);
+        boardList.add(board2);
+
+        boardDao.saveAll(boardList);
+
+        // when
+        List<Board> findBoardList = boardDao.findAll();
+
+        // then
+        assertThat(findBoardList.size()).isEqualTo(2);
     }
 }
