@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
-import javax.xml.bind.ValidationException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
@@ -19,15 +18,14 @@ class BoardDaoImplTest {
     @Autowired
     private BoardDao boardDao;
 
+    private Board makeBoard() {
+        return new Board("제목", "내용", "작성자", "1234");
+    }
+
     @Test
     void 게시글작성() {
         // given
-        Board board = Board.builder()
-                .title("제목")
-                .content("내용")
-                .writer("테스트작성자")
-                .password("1234")
-                .build();
+        Board board = makeBoard();
 
         // when
         Board saveBoard = boardDao.save(board);
@@ -40,12 +38,7 @@ class BoardDaoImplTest {
     @Test
     void 게시물조회() {
         // given
-        Board board = Board.builder()
-                .title("제목")
-                .content("내용")
-                .writer("테스트작성자")
-                .password("1234")
-                .build();
+        Board board = makeBoard();
 
         Board saveBoard = boardDao.save(board);
 
@@ -59,12 +52,7 @@ class BoardDaoImplTest {
     @Test
     void 게시물삭제() {
         // given
-        Board board = Board.builder()
-                .title("제목")
-                .content("내용")
-                .writer("테스트작성자")
-                .password("1234")
-                .build();
+        Board board = makeBoard();
 
         Board saveBoard = boardDao.save(board);
 
@@ -84,19 +72,9 @@ class BoardDaoImplTest {
     @Test
     void 게시물수정() {
         // given
-        Board board = Board.builder()
-                .title("제목")
-                .content("내용")
-                .writer("테스트작성자")
-                .password("1234")
-                .build();
+        Board board = makeBoard();
 
-        Board updateBoard = Board.builder()
-                .title("수정된 제목")
-                .content("수정된 내용")
-                .writer("테스트작성자")
-                .password("1234")
-                .build();
+        Board updateBoard = new Board("수정제목", "수정내용", "작성자", "1234");
 
         Board saveBoard = boardDao.save(board);
 

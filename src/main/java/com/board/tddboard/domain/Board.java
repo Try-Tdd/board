@@ -1,7 +1,5 @@
 package com.board.tddboard.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,9 +9,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@Builder
 public class Board {
+
+    public Board() {}
+
+    public Board(String title, String content, String writer, String password) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.password = password;
+    }
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -42,7 +47,4 @@ public class Board {
     @Column(nullable = false)
     private String password;
 
-    public Board() {
-
-    }
 }
