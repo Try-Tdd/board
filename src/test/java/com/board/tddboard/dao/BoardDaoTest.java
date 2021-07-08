@@ -1,4 +1,4 @@
-package com.board.tddboard.dao.impl;
+package com.board.tddboard.dao;
 
 import com.board.tddboard.dao.BoardDao;
 import com.board.tddboard.domain.Board;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
-class BoardDaoImplTest {
+class BoardDaoTest {
 
     @Autowired
     private BoardDao boardDao;
