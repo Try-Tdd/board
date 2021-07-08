@@ -1,19 +1,13 @@
 package com.board.tddboard.dao;
 
-import com.board.tddboard.dao.BoardDao;
 import com.board.tddboard.domain.Board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
@@ -27,7 +21,7 @@ class BoardDaoTest {
     }
 
     @Test
-    void 게시글작성() {
+    void 게시물작성() {
         // given
         Board board = makeBoard();
 
@@ -52,6 +46,21 @@ class BoardDaoTest {
         assertThat(findBoard).isNotNull();
     }
 
+
+    @Test
+    void 게시물아이디및비밀번호조회() {
+        // given
+        Board board = makeBoard();
+
+        Board saveBoard = boardDao.save(board);
+
+        // when
+        Board findBoard = boardDao.findByIdAndPassword(saveBoard.getId(), saveBoard.getPassword());
+
+        // then
+        assertThat(findBoard).isNotNull();
+    }
+
     @Test
     void 게시물수정() {
         // given
@@ -62,10 +71,9 @@ class BoardDaoTest {
 
         // when
         saveBoard.changeTitle(changeTitle);
-        Board updateBoard = boardDao.save(saveBoard);
 
         // then
-        assertThat(updateBoard.getTitle()).isEqualTo(saveBoard.getTitle());
+        assertThat(saveBoard.getTitle()).isEqualTo(saveBoard.getTitle());
     }
 
     @Test
