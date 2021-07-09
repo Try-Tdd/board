@@ -65,10 +65,8 @@ class BoardServiceTest {
         // when
         boardService.removeById(board.getId(), board.getPassword());
 
-        Board removeBoard = boardService.getDetail(board.getId());
-
         // then
-        assertThat(removeBoard.isRemoved()).isTrue();
+        assertThat(board.isRemoved()).isTrue();
     }
 
     @Test
