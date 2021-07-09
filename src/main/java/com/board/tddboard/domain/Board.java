@@ -1,6 +1,7 @@
 package com.board.tddboard.domain;
 
 import lombok.Getter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@ToString
 public class Board {
 
     public Board() {}
@@ -64,5 +66,13 @@ public class Board {
         if(this.id == null) {
             throw new IllegalStateException("게시물이 저장되지 않았습니다.");
         }
+    }
+
+    public boolean isRemoved() {
+        if(this.deletedAt == null) {
+            return false;
+        }
+
+        return true;
     }
 }

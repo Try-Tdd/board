@@ -63,10 +63,12 @@ class BoardServiceTest {
         boardService.save(board);
 
         // when
-        boolean result = boardService.removeById(board.getId(), board.getPassword());
+        boardService.removeById(board.getId(), board.getPassword());
+
+        Board removeBoard = boardService.getDetail(board.getId());
 
         // then
-        assertThat(result).isTrue();
+        assertThat(removeBoard.isRemoved()).isTrue();
     }
 
     @Test
