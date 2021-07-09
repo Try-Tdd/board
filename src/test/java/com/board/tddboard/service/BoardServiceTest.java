@@ -51,6 +51,8 @@ class BoardServiceTest {
 
         // then
         assertThat(findBoard).isNotNull();
+        assertThat(findBoard.getWriter()).isEqualTo(board.getWriter());
+        assertThat(findBoard.getPassword()).isEqualTo(board.getPassword());
     }
 
     @Test
