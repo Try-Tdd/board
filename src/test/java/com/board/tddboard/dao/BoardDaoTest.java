@@ -64,16 +64,16 @@ class BoardDaoTest {
     @Test
     void 게시물수정() {
         // given
-        String changeTitle = "변경된 제목";
         Board board = makeBoard();
+        Board updateBoard = new Board("수정된제목", "내용", "작성자", "1234");
 
         Board saveBoard = boardDao.save(board);
 
         // when
-        saveBoard.changeTitle(changeTitle);
+        saveBoard.changeBoard(updateBoard);
 
         // then
-        assertThat(saveBoard.getTitle()).isEqualTo(saveBoard.getTitle());
+        assertThat(saveBoard.getTitle()).isEqualTo(updateBoard.getTitle());
     }
 
     @Test

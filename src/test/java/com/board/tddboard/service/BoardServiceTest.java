@@ -1,6 +1,8 @@
 package com.board.tddboard.service;
 
 import com.board.tddboard.domain.Board;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,15 +20,17 @@ class BoardServiceTest {
     @Autowired
     private BoardService boardService;
 
-    private Board makeBoard() {
+    private Board newBoard;
 
-        return new Board("제목", "내용", "작성자", "1234");
+    @BeforeEach
+    private void makeBoard() {
+        this.newBoard = new Board("제목", "내용", "작성자", "1234");
     }
 
     @Test
     void 게시물작성() {
         // given
-        Board board = makeBoard();
+        Board board = newBoard;
 
         // when
         boardService.save(board);
@@ -38,7 +42,7 @@ class BoardServiceTest {
     @Test
     void 게시물조회() {
         // given
-        Board board = makeBoard();
+        Board board = newBoard;
 
         boardService.save(board);
 
@@ -52,7 +56,7 @@ class BoardServiceTest {
     @Test
     void 게시물삭제() {
         // given
-        Board board = makeBoard();
+        Board board = newBoard;
 
         boardService.save(board);
 
@@ -66,7 +70,7 @@ class BoardServiceTest {
     @Test
     void 게시물수정() {
         // given
-        Board board = makeBoard();
+        Board board = newBoard;
         Board updateBoard = new Board("수정된제목", "내용", "작성자", "1234");
 
         boardService.save(board);
@@ -82,8 +86,8 @@ class BoardServiceTest {
     @Test
     void 게시물전체조회() {
         // given
-        Board board1 = makeBoard();
-        Board board2 = makeBoard();
+        Board board1 = newBoard;
+        Board board2 = new Board("수정된제목", "내용", "작성자", "1234");
 
         boardService.save(board1);
         boardService.save(board2);
