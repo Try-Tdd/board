@@ -51,12 +51,12 @@ public class Board {
         this.deletedAt = LocalDateTime.now();
     }
 
-    public void changeTitle(String title) {
-        this.title = title;
+    public void changeBoard(Board board) {
+        if(board.getTitle() != null) {
+            this.title = board.getTitle();
+        }
+        if(board.getContent() != null) {
+            this.content = board.getContent();
+        }
     }
-
-    public void changeContent(String content) {
-        this.content = content;
-    }
-
 }

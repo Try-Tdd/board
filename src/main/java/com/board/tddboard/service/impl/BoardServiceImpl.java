@@ -17,6 +17,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     public void BoardServiceImpl(BoardDao boardDao) {
+
         this.boardDao = boardDao;
     }
 
@@ -55,8 +56,7 @@ public class BoardServiceImpl implements BoardService {
     public boolean updateById(Long id, Board board) {
         Board updateBoard = getByIdAndPasswordWithCompare(id, board.getPassword());
 
-        updateBoard.changeTitle(board.getTitle());
-        updateBoard.changeContent(board.getContent());
+        updateBoard.changeBoard(board);
 
         return true;
     }
@@ -65,7 +65,7 @@ public class BoardServiceImpl implements BoardService {
         Board board = boardDao.findByIdAndPassword(id, password);
         if(board == null){
             throw new IllegalStateException("게시물이 존재하지 않습니다. 비밀번호를 확인해주세요.");
-        };
+        }
 
         return board;
     }

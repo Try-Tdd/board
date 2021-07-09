@@ -19,6 +19,7 @@ class BoardServiceTest {
     private BoardService boardService;
 
     private Board makeBoard() {
+
         return new Board("제목", "내용", "작성자", "1234");
     }
 
