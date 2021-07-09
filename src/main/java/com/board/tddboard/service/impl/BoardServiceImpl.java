@@ -5,7 +5,6 @@ import com.board.tddboard.domain.Board;
 import com.board.tddboard.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +23,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Board save(Board board) {
         boardDao.save(board);
+        board.saveCheck();
 
         return board;
     }

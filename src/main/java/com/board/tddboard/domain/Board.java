@@ -59,4 +59,10 @@ public class Board {
             this.content = board.getContent();
         }
     }
+
+    public void saveCheck() {
+        if(this.id == null) {
+            throw new IllegalStateException("게시물이 저장되지 않았습니다.");
+        }
+    }
 }
