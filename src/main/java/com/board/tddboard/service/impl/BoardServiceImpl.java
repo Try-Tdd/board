@@ -29,7 +29,12 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public Board getDetail(Long id) {
-        return boardDao.findById(id).get();
+        Optional<Board> findBoard = boardDao.findById(id);
+        if(findBoard.isEmpty()) {
+            throw new IllegalStateException("게시물이 존재하지 않습니다.");
+        }
+
+        return findBoard.get();
     }
 
     @Override
