@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="euc-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 등록</title>
+</head>
+<body>
+    <form action="/boards" method="post">
+        <table>
+            <tbody>
+                    <tr>
+                        <td class="field">제목</td>
+                        <td class="value"><input name="title"/></td>
+                    </tr>
+                    <tr>
+                        <td class="field">내용</td>
+                        <td class="value"><input name="content"/></td>
+                    </tr>
+                    <tr>
+                        <td class="field">작성자</td>
+                        <td class="value"><input name="writer"/></td>
+                    </tr>
+                    <tr>
+                        <td class="field">비밀번호</td>
+                        <td class="value"><input name="password"/></td>
+                    </tr>
+            </tbody>
+        </table>
+        <button id="goListButton" type="button">리스트</button>
+        <button>등록</button>
+    </form>
+</body>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid #444444;
+    }
+    th, td {
+        border: 1px solid #444444;
+    }
+    .value {
+        width: 100px;
+    }
+</style>
+<script>
+    document.getElementById('goListButton').addEventListener('click', () => {
+        self.location = '/boards';
+    });
+</script>
+</html>

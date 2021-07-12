@@ -16,7 +16,6 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     public void BoardServiceImpl(BoardDao boardDao) {
-
         this.boardDao = boardDao;
     }
 
@@ -40,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<Board> getList() {
-        return boardDao.findAll();
+        return boardDao.findAllByOrderByIdDesc();
     }
 
     @Override
