@@ -40,6 +40,16 @@ public class BoardController {
         return "list";
     }
 
+
+    @PostMapping("/{id}/update")
+    public String update(Model model, @PathVariable("id") Long id, @Valid BoardDto.UpdateDto updateDto) {
+        Board updateBoard = updateDto.toBoard();
+
+        boardService.updateById(id, updateBoard);
+
+        return "redirect:/boards";
+    }
+
     @GetMapping("/{id}")
     public String getDetail(Model model, @PathVariable("id") Long id) {
         Board board = boardService.getDetail(id);

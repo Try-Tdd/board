@@ -5,7 +5,7 @@
     <title>게시글 등록</title>
 </head>
 <body>
-    <form action="/boards" method="post">
+    <form th:action="@{/boards/__${id}__/update}" method="post">
         <table>
             <tbody>
                     <tr>
@@ -18,7 +18,7 @@
                     </tr>
                     <tr>
                         <td class="field">작성자</td>
-                        <td class="value"><input name="writer"/></td>
+                        <td class="value"><input name="writer" readonly th:value="${board.writer}"/></td>
                     </tr>
                     <tr>
                         <td class="field">비밀번호</td>
