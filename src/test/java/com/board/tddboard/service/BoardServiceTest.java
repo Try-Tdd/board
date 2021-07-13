@@ -1,7 +1,6 @@
 package com.board.tddboard.service;
 
 import com.board.tddboard.domain.Board;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

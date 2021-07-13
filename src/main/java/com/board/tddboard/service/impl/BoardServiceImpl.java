@@ -6,6 +6,7 @@ import com.board.tddboard.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,6 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     public void BoardServiceImpl(BoardDao boardDao) {
-
         this.boardDao = boardDao;
     }
 
@@ -40,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<Board> getList() {
-        return boardDao.findAll();
+        return boardDao.findAllByOrderByIdDesc();
     }
 
     @Override
@@ -53,6 +53,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public boolean updateById(Long id, Board board) {
         Board updateBoard = getByIdAndPasswordWithCompare(id, board.getPassword());
 

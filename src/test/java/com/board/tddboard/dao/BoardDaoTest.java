@@ -94,4 +94,23 @@ class BoardDaoTest {
         // then
         assertThat(findBoardList.size()).isEqualTo(2);
     }
+
+    @Test
+    void 게시물id높은순조회() {
+        // given
+        Board board1 = makeBoard();
+        Board board2 = makeBoard();
+        List<Board> boardList = new ArrayList<>();
+
+        boardList.add(board1);
+        boardList.add(board2);
+
+        boardDao.saveAll(boardList);
+
+        // when
+        List<Board> findBoardList = boardDao.findAllByOrderByIdDesc();
+
+        // then
+        assertThat(findBoardList.get(0).getId()).isGreaterThan(findBoardList.get(1).getId());
+    }
 }

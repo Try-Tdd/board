@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="euc-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>아이디</td>
+                <td>제목</td>
+                <td>글쓴이</td>
+                <td>작성시간</td>
+                <td>상세</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${list}">
+                <td th:text="${board.id}"></td>
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.writer}"></td>
+                <td th:text="${board.createdAt}"></td>
+                <td><a th:href="@{/boards/{id}(id=${board.id})}">보기</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="registerButton" type="button">등록</button>
+</body>
+<style>
+    table {
+        width: 40%;
+        border: 1px solid #444444;
+    }
+    th, td {
+        border: 1px solid #444444;
+    }
+</style>
+<script>
+    document.getElementById('registerButton').addEventListener('click', () => {
+        self.location = '/boards/register-form';
+    });
+</script>
+</html>
