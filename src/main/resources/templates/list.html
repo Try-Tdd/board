@@ -21,7 +21,7 @@
                 <td th:text="${board.title}"></td>
                 <td th:text="${board.writer}"></td>
                 <td th:text="${board.createdAt}"></td>
-                <td><button type="button">보기</button></td>
+                <td><a th:href="@{/boards/{id}(id=${board.id})}">보기</a></td>
             </tr>
         </tbody>
     </table>
@@ -29,7 +29,7 @@
 </body>
 <style>
     table {
-        width: 100%;
+        width: 40%;
         border: 1px solid #444444;
     }
     th, td {

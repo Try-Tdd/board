@@ -6,11 +6,9 @@ import com.board.tddboard.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -25,7 +23,7 @@ public class BoardController {
     }
 
     @PostMapping("")
-    public String create(BoardDto.CreateDto createDto) {
+    public String create(@Valid BoardDto.CreateDto createDto) {
         Board newBoard = createDto.toBoard();
 
         boardService.save(newBoard);
@@ -40,6 +38,15 @@ public class BoardController {
         model.addAttribute("list", boardList);
 
         return "list";
+    }
+
+    @GetMapping("/{id}")
+    public String getDetail(Model model, @PathVariable("id") Long id) {
+        Board board = boardService.getDetail(id);
+
+        model.addAttribute("board", board);
+
+        return "detail";
     }
 
     @GetMapping("register-form")
